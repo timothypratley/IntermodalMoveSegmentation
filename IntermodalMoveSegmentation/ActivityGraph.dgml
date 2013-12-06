@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="ContainerShift" Bounds="-626.23304280599,-42.937453038364,108.936666666667,23.2766666666667" Label="Container shift (Y)" UseManualLocation="True" />
+    <Node Id="DischargeVesselToAUTR(VU)" Bounds="-342.998197328293,-97.4134598183749,172.363333333333,23.2766666666667" Label="Discharge vessel to a UTR (VU)" UseManualLocation="True" />
+    <Node Id="DischargeVesselToAnOTR" Bounds="-716.006760400836,133.163704447982,171.853333333333,23.2766666666667" Label="Discharge vessel to an OTR (V)" UseManualLocation="True" />
+    <Node Id="DischargeVesselToTheBackreach" Bounds="-830.141893457477,239.717237781315,203.663333333333,23.2766666666666" Label="Discharge vessel to the backreach (V)" UseManualLocation="True" />
+    <Node Id="GateInFlip(YU)" Bounds="-807.857614746094,532.296661474609,104.73,23.2766666666666" Label="Gate in flip (CYU)" UseManualLocation="True" />
+    <Node Id="GateOutFlip(UX)" Bounds="-803.132362874349,638.850194807943,105.313333333333,23.2766666666666" Label="Gate out flip (UX)" UseManualLocation="True" />
+    <Node Id="GateOutFlip(UYC)" Bounds="-665.448122558594,537.107163948568,111.87,23.2766666666666" Label="Gate out flip (UYC)" UseManualLocation="True" />
+    <Node Id="GroundOrRailToGrounOrRail(X)" Bounds="-739.838961995443,388.370972694227,181.826666666667,23.2766666666666" Label="Ground or rail to groun or rail (X)" UseManualLocation="True" />
+    <Node Id="GroundOrRailToHorizontal(XS)" Bounds="-363.804409361984,171.022974590415,175.643333333333,23.2766666666666" Label="Ground or rail to horizontal (XS)" UseManualLocation="True" />
+    <Node Id="GroundOrRailToOTR(X)" Bounds="-669.064807535807,441.647739360894,143.003333333333,23.2766666666666" Label="Ground or rail to OTR (X)" UseManualLocation="True" />
+    <Node Id="GroundOrRailToWheels(X)" Bounds="-340.491422231443,50.0381921725923,155.27,23.2766666666667" Label="Ground or rail to wheels (X)" UseManualLocation="True" />
+    <Node Id="HorizontalToGroundOrRail(SX)" Bounds="-29.5235087760435,168.295935643293,175.673333333333,23.2766666666667" Label="Horizontal to ground or rail (SX)" UseManualLocation="True" />
+    <Node Id="LoadAUTR(YU)" Bounds="-335.384703142903,-25.4658128929321,101.816666666667,23.2766666666667" Label="Load a UTR (YU)" UseManualLocation="True" />
+    <Node Id="LoadAnOTR" Bounds="-573.774366048177,-96.2142197050307,101.306666666667,23.2766666666667" Label="Load an OTR (Y)" UseManualLocation="True" />
+    <Node Id="LoadVesselFromAUTR(UV)" Bounds="-9.61762399251546,-96.530468853772,160.986666666667,23.2766666666667" Label="Load vessel from a UTR (UV)" UseManualLocation="True" />
+    <Node Id="LoadVesselFromAnOTR" Bounds="-680.008307438597,186.440471114648,160.476666666667,23.2766666666666" Label="Load vessel from an OTR (V)" UseManualLocation="True" />
+    <Node Id="LoadVesselFromTheBackreach" Bounds="-827.905739079222,79.8869377813149,192.286666666667,23.2766666666666" Label="Load vessel from the backreach (V)" UseManualLocation="True" />
+    <Node Id="OTRToGroundOrRail(X)" Bounds="-840.804844970703,441.647739360894,141.74,23.2766666666666" Label="OTR to ground or rail (X)" UseManualLocation="True" />
+    <Node Id="UnloadAUTR(UY)" Bounds="25.1781151839015,-21.9155533199326,112.203333333333,23.2766666666667" Label="Unload a UTR (UY)" UseManualLocation="True" />
+    <Node Id="UnloadAnOTR" Bounds="-715.467638346354,-96.2142197050307,111.693333333333,23.2766666666667" Label="Unload an OTR (Y)" UseManualLocation="True" />
+    <Node Id="WheelsToGroundOrRail(X)" Bounds="-18.5938784684269,50.0320936055103,155.763333333333,23.2766666666666" Label="Wheels to ground or rail (X)" UseManualLocation="True" />
+    <Node Id="YardFlip(UCYCU)" Bounds="-803.967350260417,585.573428141276,106.033333333333,23.2766666666666" Label="Yard flip (UCYCU)" UseManualLocation="True" />
+    <Node Id="YardFlip(X)" Bounds="-667.819029541016,590.38391398112,78.4433333333334,23.2766666666666" Label="Yard flip (X)" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="DischargeVesselToAUTR(VU)" Target="LoadVesselFromAUTR(UV)" Bounds="-170.63486928304,-85.5429053345294,152.01728578567,0.409620411313114" />
+    <Link Source="DischargeVesselToAUTR(VU)" Target="UnloadAUTR(UY)" Bounds="-204.697500317274,-74.1367940775553,225.074611665957,50.2598201147233" />
+    <Link Source="DischargeVesselToAUTR(VU)" Target="WheelsToGroundOrRail(X)" Bounds="-231.865446154889,-74.1367940775554,258.045783682603,120.36439572203" />
+    <Link Source="GroundOrRailToHorizontal(XS)" Target="HorizontalToGroundOrRail(SX)" Bounds="-188.161075642904,180.724215372301,149.637866306372,1.22067665826216" />
+    <Link Source="GroundOrRailToWheels(X)" Target="LoadVesselFromAUTR(UV)" Bounds="-236.356311284192,-69.6348167017854,272.491594950219,119.673008874378" />
+    <Link Source="GroundOrRailToWheels(X)" Target="UnloadAUTR(UY)" Bounds="-207.193271867793,2.92926974647293,225.309840968748,47.1089224261193" />
+    <Link Source="GroundOrRailToWheels(X)" Target="WheelsToGroundOrRail(X)" Bounds="-185.221422231443,61.6720705977964,157.62752106932,0.00298481934908068" />
+    <Link Source="LoadAUTR(YU)" Target="LoadVesselFromAUTR(UV)" Bounds="-233.950625433329,-71.4888983115324,237.804709973828,47.5570907975346" />
+    <Link Source="LoadAUTR(YU)" Target="UnloadAUTR(UY)" Bounds="-233.568038431803,-13.3333285827192,249.746577568994,2.42419547918617" />
+    <Link Source="LoadAUTR(YU)" Target="WheelsToGroundOrRail(X)" Bounds="-234.647945032374,-2.88409624074189,232.152459886042,50.9856082878244" />
+  </Links>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

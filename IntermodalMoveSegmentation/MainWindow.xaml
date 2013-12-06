@@ -1,0 +1,26 @@
+﻿<Window x:Class="IntermodalMoveSegmentation.MainWindow"
+        xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
+        xmlns:local="clr-namespace:IntermodalMoveSegmentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="./App.ico"
+        Title="Intermodal Move Segmentation" Height="1000" Width="1024">
+    <Grid>
+        <StackPanel>
+        <zoom:ZoomControl Zoom="0.7" ZoomBoxOpacity="0.5" Background="#ff656565" Height="525" VerticalAlignment="Top">
+            <local:MyGraphLayout x:Name="graphLayout" Margin="10,0,10,10"
+                Graph="{Binding Path=Graph}"
+                LayoutAlgorithmType="{Binding Path=LayoutAlgorithmType, Mode=OneWay}"
+                OverlapRemovalAlgorithmType="FSA"
+                HighlightAlgorithmType="Simple" VerticalAlignment="Bottom"/>
+        </zoom:ZoomControl>
+        <ComboBox ItemsSource="{Binding LayoutAlgorithmTypes}"
+                  SelectedItem="{Binding LayoutAlgorithmType, Mode=TwoWay}"
+                  Width="150" Height="25"/>
+        <TextBox Text="{Binding Path=PathCount}" Height="20"/>
+        <TextBox Text="{Binding Path=AllPaths}" Height="100"/>
+        <TextBox Text="{Binding Path=TransitionNodes}" Height="100"/>
+        <TextBox Text="{Binding Path=TransitionEdges}" Height="100"/>
+        </StackPanel>
+    </Grid>
+</Window>
