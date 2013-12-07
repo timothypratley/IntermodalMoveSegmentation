@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntermodalMoveSegmentation", "IntermodalMoveSegmentation\IntermodalMoveSegmentation.csproj", "{31E630C3-E093-414D-B611-B7F2A6AFE95E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4ADAB69E-0A66-4773-AA52-A0023B562D43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{31E630C3-E093-414D-B611-B7F2A6AFE95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31E630C3-E093-414D-B611-B7F2A6AFE95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31E630C3-E093-414D-B611-B7F2A6AFE95E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ADAB69E-0A66-4773-AA52-A0023B562D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ADAB69E-0A66-4773-AA52-A0023B562D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ADAB69E-0A66-4773-AA52-A0023B562D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ADAB69E-0A66-4773-AA52-A0023B562D43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

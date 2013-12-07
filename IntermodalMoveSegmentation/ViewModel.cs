@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuickGraph.Serialization;
 using QuickGraph.Algorithms.ShortestPath;
+using QuickGraph.Algorithms.RankedShortestPath;
 using System.Xml;
 
 namespace IntermodalMoveSegmentation
@@ -33,6 +34,16 @@ namespace IntermodalMoveSegmentation
         public void ComputeAllPaths()
         {
             Graph = MyGraphSerializeHelper.LoadDGML("IntermodalGraph.dgml");
+
+            // verify that all edges have an abbreviation specified
+            foreach (var e in Graph.Edges)
+            {
+                if (string.IsNullOrEmpty(e.Abbreviation))
+                {
+                    throw new InvalidOperationException("Edge " + e.Source + " to " + e.Target + " does not have an Abbreviation.");
+                }
+            }
+
             var fw = new FloydWarshallAllShortestPathAlgorithm<MyVertex, MyEdge>(Graph, e => 1);
             fw.Compute();
             Func<MyVertex, MyVertex, IEnumerable<MyEdge>> getPath = (source, target) =>
@@ -45,11 +56,29 @@ namespace IntermodalMoveSegmentation
 
             var paths = (from source in Graph.Vertices.Where(v => !Graph.IsOutEdgesEmpty(v))
                          from target in Graph.Vertices.Where(v => Graph.IsOutEdgesEmpty(v))
-                         where source != target && getPath(source, target) != null
-                         select "<" + string.Join("|", getPath(source, target).Select(e => e.Abbreviation)) + ">\t\t"
-                         + source.ID + " To " + target.ID + ": "
-                         + pathToString(getPath(source, target)));
-            AllPaths = string.Join(Environment.NewLine, paths);
+                         where source != target
+                         select getPath(source,target)).Where(p => p !=null);
+
+            // verify there is only one route
+            foreach (var path in paths)
+            {
+                var hp = new HoffmanPavleyRankedShortestPathAlgorithm<MyVertex, MyEdge>(Graph, e => 1);
+                hp.Compute(path.First().Source, path.Last().Target);
+                var second = hp.ComputedShortestPaths.ElementAtOrDefault(1);
+                if (second != null)
+                {
+                    if (second.Count() <= path.Count())
+                    {
+                        throw new InvalidOperationException("Equal length shortest paths found");
+                    }
+                }
+            }
+
+            AllPaths = string.Join(Environment.NewLine,
+                (from path in paths
+                 select "<" + string.Join("|", path.Select(e => e.Abbreviation)) + ">\t\t"
+                 + path.First().Source + " To " + path.Last().Target + ": "
+                 + pathToString(path)).OrderBy(s => s));
             PathCount = paths.Count();
 
             TransitionNodes = string.Join("," + Environment.NewLine,
@@ -60,7 +89,7 @@ namespace IntermodalMoveSegmentation
                 + e.Source.CodeString()
                 + ", TransitionNode."
                 + e.Target.CodeString()
-                + ", \"" + e.Abbreviation + "\")"));
+                + ", \"" + e.Abbreviation + "\")").OrderBy(s => s));
         }
 
         public IEnumerable<string> LayoutAlgorithmTypes { get { return layoutAlgorithmTypes; } }
