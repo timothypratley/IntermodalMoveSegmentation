@@ -44,6 +44,31 @@ namespace IntermodalMoveSegmentation
                 }
             }
 
+            // verfiy there are no redundant nodes
+            foreach (var v in Graph.Vertices)
+            {
+                foreach (var other in Graph.Vertices)
+                {
+                    var vTargets = Graph.OutEdges(v).Select(e => e.Target);
+                    var vAbbreviations = Graph.OutEdges(v).Select(e => e.Abbreviation);
+                    var otherTargets = Graph.OutEdges(other).Select(e => e.Target);
+                    var otherAbbreviations = Graph.OutEdges(other).Select(e => e.Abbreviation);
+                    if (v == other                                          // this is the same vertex
+                        || (!vTargets.Any() && !otherTargets.Any())         // no out edges
+                        || vTargets.Except(otherTargets).Any()              // any different targets one way
+                        || otherTargets.Except(vTargets).Any()              // or the other
+                        || vAbbreviations.Except(otherAbbreviations).Any()  // or different abbreviations
+                        || otherAbbreviations.Except(vAbbreviations).Any())
+                    {
+                        // everything is fine!
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Vertex " + v + " has the same targets as " + other);
+                    }
+                }
+            }
+
             var fw = new FloydWarshallAllShortestPathAlgorithm<MyVertex, MyEdge>(Graph, e => 1);
             fw.Compute();
             Func<MyVertex, MyVertex, IEnumerable<MyEdge>> getPath = (source, target) =>
